@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="parentcd">
+<div class="childtd">
+    <table border="1" height=100% width=100%>
+    @if (Model.imgModel.Count > 0)
+    {
+        @foreach (var image in Model.imgModel)
+        {
+     <tr>
+         <td>
+             <div class="imgDiv">
+              <img class="img-thumbnail" src="@image.imgURL" alt="@image.imgTitle" style="width:250px;height:250px;">
+              </div>
+         </td>
+         <td>
+              <div class="imgDiv">
+              <img class="img-thumbnail" src="@image.wtimgURL" alt="@image.imgTitle" style="width:250px;height:250px;">
+              </div>
+         </td>
+         <td>
+             <a href="@image.imgURL">@Environment.GetEnvironmentVariable("WEBSITE_HOSTNAME")@image.imgURL</a>
+         </td>
+        <td>
+         <a asp-page="./wtmPage" asp-route-id="@image.Id" asp-route-imgurl="@image.imgURL">Watermark</a> 
+        </td>
+       
+         
+     </tr>
+
+        }
+    }
+    </table>
+</div>
+</div>

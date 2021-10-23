@@ -1,0 +1,65 @@
+﻿@page
+@model byosLinuxUpload.Pages.imggalViewModel
+@{
+}
+
+
+<div class="parentcd">
+<div class="childcd">
+@if (Model.imgModel.Count > 0)
+    {
+        
+        <div id="carouselCtl" class="carousel slide" data-ride="carousel" data-interval="2000" style="width:150px;height:150px;">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                @{
+                    var firstImg = true;
+                }
+                @foreach (var image in Model.imgModel)
+                {
+                    <div class="carousel-item @(firstImg?Html.Raw("active"):"")">
+                        <img class="img-thumbnail" src="@image.imgURL" alt="@image.imgTitle" style="width:170px;height:150px;">
+                    </div>
+                    firstImg = false;
+                }
+            </div>
+            <a class="carousel-control-prev" href="#carouselCtl" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselCtl" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    
+    }
+else
+{
+<h1>No Images to display!</h1>
+}
+</div>
+<div class="childtd">
+    <table border="1" height=100% width=100%>
+    @if (Model.imgModel.Count > 0)
+    {
+        @foreach (var image in Model.imgModel)
+        {
+     <tr>
+         <td>
+             <div class="imgDiv">
+              <img class="img-thumbnail" src="@image.imgURL" alt="@image.imgTitle" style="width:150px;height:150px;">
+              </div>
+         </td>
+         <td>
+             <label title="@image.imgTitle">@image.imgTitle</label>
+         </td>
+         <td>
+             <a href="@image.imgURL">@Environment.GetEnvironmentVariable("WEBSITE_HOSTNAME")@image.imgURL</a>
+         </td>
+     </tr>
+
+        }
+    }
+    </table>
+</div>
+</div>
